@@ -1,0 +1,152 @@
+<!-- 头部订单状态 -->
+<!-- is_over判断是否是订单结束后的页面 -->
+<view class='head' wx:if='{{!is_over}}'>
+  <view class='state_box'>
+    <view class='state'>
+      <image src='/images/sure_off.png' class="state_img"></image>
+      <view class='state_word'>待确认</view>
+    </view>
+    <view class="{{state[1]==0||state[2]==0||state[3]==0||state[4]==0?'line1':'line'}}"></view>
+    <view class='state'>
+      <image src='/images/pay_off.png' class="{{state[1]==0||state[2]==0||state[3]==0||state[4]==0?'state_img':'state_img1'}}"></image>
+      <view class="{{state[1]==0||state[2]==0||state[3]==0||state[4]==0?'state_word':'state_word1'}}">待支付</view>
+    </view>
+    <view class="{{state[2]==0||state[3]==0||state[4]==0?'line1':'line'}}"></view>
+    <view class='state'>
+      <image src='/images/send_off.png' class="{{state[2]==0||state[3]==0||state[4]==0?'state_img':'state_img1'}}"></image>
+      <view class="{{state[2]==0||state[3]==0||state[4]==0?'state_word':'state_word1'}}">待发货</view>
+    </view>
+    <view class="{{state[3]==0||state[4]==0?'line1':'line'}}"></view>
+    <view class='state'>
+      <image src='/images/get_off.png' class="{{state[3]==0||state[4]==0?'state_img':'state_img1'}}"></image>
+      <view class="{{state[3]==0||state[4]==0?'state_word':'state_word1'}}">待收货</view>
+    </view>
+    <view class="{{state[4]==0?'line1':'line'}}"></view>
+    <view class='state'>
+      <image src='/images/comment_off.png' class="{{state[4]==0?'state_img':'state_img1'}}"></image>
+      <view class="{{state[4]==0?'state_word':'state_word1'}}">待评价</view>
+    </view>
+  </view>
+</view>
+<!-- 如果是已完成后的订单详情页面 -->
+<view class='head' wx:if='{{is_complete}}'>
+  <view class='yiwan'>已完成</view>
+  <view class='yiwan_time'>用户于{{comments.cdateline}} 已评价 </view>
+  <image src='/images/is_complete_on.png' class='is_complete_img'></image>
+</view>
+<view class='score_box' wx:if='{{is_complete}}'>
+  <view class='score_title'>{{comments.uusername}}
+    <text>对订单的评价:</text>
+  </view>
+  <image src='/images/star{{comments.cstar}}.png'></image>
+  <view class='score_des'>{{comments.ccomment}}</view>
+</view>
+<!-- 如果是取消后的订单详情页面 -->
+<view class='head' wx:if='{{is_cancel}}'>
+   <view class='yiwan'>已取消</view>
+  <view class='yiwan_time'>订单于2018-12-13 16:45:45 被取消 </view>
+  <image src='/images/is_complete_off.png' class='is_complete_img'></image>
+</view>
+<!-- 订单详细信息 -->
+<view wx:if='{{!is_over}}'>
+  <!-- 是用户 -->
+  <view wx:if='{{!is_bird}}'>
+    <view class='details_title' wx:if='{{state[0]==0}}'>等待飞鸟确认订单</view>
+    <view class='details_title' wx:if='{{state[1]==0}}'>24小时未支付将自动关闭</view>
+    <view class='details_title' wx:if='{{state[2]==0}}'>订单已支付，等待飞鸟确认发货</view>
+    <view class='details_title' wx:if='{{state[3]==0}}'>飞鸟已确认发货，若未及时确认，平台将在7个工作日后自动将订单费用打给飞鸟</view>
+    <view class='details_title' wx:if='{{state[4]==0}}'>订单已完成，您对这笔订单还满意吗？快来评价吧~</view>
+  </view>
+  <!-- 是飞鸟 -->
+  <view wx:if='{{is_bird}}'>
+    <view class='details_title' wx:if='{{state[0]==0}}'>亲，请您核对订单信息</view>
+    <view class='details_title' wx:if='{{state[1]==0}}'> 等待用户支付中，24小时未支付将自动关闭</view>
+    <view class='details_title' wx:if='{{state[2]==0}}'>订单已支付，请尽快发货</view>
+    <view class='details_title' wx:if='{{state[3]==0}}'>飞鸟已确认发货，若用户未及时确认，平台将在7个工作日后自动将订单费用打给飞鸟</view>
+    <view class='details_title' wx:if='{{state[4]==0}}'>订单已完成，您对这笔订单还满意吗？快来评价吧~</view>
+  </view>
+</view>
+
+<!-- 订单信息 -->
+<view class="{{is_over?'info1':'info'}}">
+  <view class='icon'></view>
+  <view class='info_title'>订单信息</view>
+  <view class='info_list'>订单备注：
+    <text style='font-weight:bold;'>{{orders.desc}}</text>
+  </view>
+  <view class='info_list'>物品重量：{{orders.goodsweight}}kg</view>
+  <view class='info_list'>物品类型：{{orders.goodsid}}</view>
+  <view class='info_list'>下单时间：{{orders_time}}</view>
+  <view class='info_list'>订单编号：{{orders.ordernumber}}</view>
+</view>
+<!-- 行程信息 -->
+<view class='trip'>
+  <view class='icon'></view>
+  <view class='info_title'>行程信息
+    <image src='/images/right_gray.png'></image>
+    <text bindtap='go_trip_details' data-id='{{birds.id}}'>查看详情</text>
+  </view>
+  <CityTo c_from='{{c_from}}' c_to='{{c_to}}'></CityTo>
+  <view class='info_list' style='margin-top:20rpx;'>行程编号：{{birds.tripnumbers}}</view>
+</view>
+<!-- 飞鸟信息 -->
+<view class='bird'>
+  <view class='icon'></view>
+  <view class='info_title'>飞鸟信息</view>
+  <view class='user'>
+    <image src='{{birdsuser.headerimg}}' class='headImg'></image>
+    <view class='userName'>{{birdsuser.username}}</view>
+    <view class='rank'>信用等级 <image src='{{birdsuser.img}}'></image></view>
+  </view>
+  <view class='bird_info' style='margin-top:32rpx;'>飞鸟姓名
+    <text style='float:right;'>{{birdsuser.username}}</text>
+  </view>
+  <view class='bird_info'>常驻国家
+    <text style='float:right;'>{{birdsuser.nation}}</text>
+  </view>
+  <view class='bird_info'>手机号码
+    <text style='float:right;'>{{birdsuser.areacode}} {{birdsuser.phone}}</text>
+  </view>
+  <view class='bird_info'>微信账号
+    <text style='float:right;'>{{birdsuser.wxaccount}}</text>
+  </view>
+</view>
+<!-- 用户信息 -->
+<view class='bird'>
+  <view class='icon'></view>
+  <view class='info_title'>用户信息</view>
+  <view class='user'>
+    <image src='{{orderuser.headerimg}}' class='headImg'></image>
+    <view class='userName'>{{orderuser.username}}</view>
+    <view class='rank'>信用等级 <image src='{{orderuser.img}}'></image></view>
+  </view>
+  <view class='bird_info' style='margin-top:32rpx;'>用户姓名
+    <text style='float:right;'>{{orderuser.username}}</text>
+  </view>
+  <view class='bird_info'>常驻国家
+    <text style='float:right;'>{{orderuser.nation}}</text>
+  </view>
+  <view class='bird_info'>手机号码
+    <text style='float:right;'>{{orderuser.areacode}} {{orderuser.phone}}</text>
+  </view>
+  <view class='bird_info'>微信账号
+    <text style='float:right;'>{{orderuser.wxaccount}}</text>
+  </view>
+</view>
+
+<!-- 飞鸟信息 -->
+<view class="{{is_over?'money1':'money'}}">
+  <view class='icon'></view>
+  <view class='info_title'>订单金额</view>
+  <view class='is_money'>￥{{orders.money}}</view>
+</view>
+
+<!-- 底部按钮 -->
+<view class='foot' wx:if='{{!is_over}}'>
+  <view class='btn3' wx:if='{{state[1]==0&&!is_bird}}' bindtap='pay'>支付</view>
+  <view class='btn3' bindtap='sure_get' data-id='{{orders.id}}' wx:if='{{state[3]==0&&!is_bird}}'>确认收货</view>
+  <view class='btn3' bindtap='sure_send' data-id='{{orders.id}}' wx:if='{{state[2]==0&&is_bird}}'>确认发货</view>
+  <view class='btn1' wx:if='{{state[0]==0||state[1]==0||state[2]==0}}' bindtap='chat'>沟通</view>
+  <view class='btn2' bindtap='cancel_trip' wx:if='{{state[0]==0||state[1]==0||state[2]==0||state[3]==0}}'>取消行程</view>
+  <view class='btn3' wx:if='{{state[4]==0&&orders.ustate==0}}'>评价</view>
+</view>

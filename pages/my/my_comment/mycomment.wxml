@@ -1,0 +1,46 @@
+<!--pages/my/my_comment/mycomment.wxml-->
+<view class='myself'>
+  <view class='head'>
+    <image class='headImg' src='{{user.headerimg}}'></image>
+    <view class='myname'>{{user.username}}</view>
+    <view class='mycountry'>国家：{{user.nation}}</view>
+    <view class='yi'>已认证 <image src='/images/gougou_white.png'></image></view>
+  </view>
+  <view class='des'>{{user.describe}}</view>
+  <!-- 信用等级 -->
+  <view class='credit'>信用等级: <image src='{{scoreImg}}'></image></view>
+  <view class='credit'>待评价的飞鸟订单:
+    <text style='color:red;'>{{userbirds}}</text>
+    <view class='go_credit' bindtap='go_order' data-is_bird='1'>去评价</view>
+  </view>
+  <view class='credit'>待评价的用户订单:
+    <text style='color:red;'>{{userorders}}</text>
+    <view class='go_credit' bindtap='go_order' data-is_bird='0'>去评价</view>
+  </view>
+</view>
+
+<!-- 我收发的评价nav -->
+<view class='my_credit'>
+  <view class="{{choose==0?'my_credit_title1':'my_credit_title'}}" bindtap='choose' data-num='0'>我收到的评价</view>
+  <view class="{{choose==1?'my_credit_title1':'my_credit_title'}}" bindtap='choose' data-num='1'>我发出的评价</view>
+</view>
+
+<!-- 我收到的评价 -->
+<view class='res' wx:for='{{choose==0?ucomments:mcomments}}' wx:key='{{index}}'>
+  <view class='res_item'>
+    <image class='res_headImg' src='{{item.uheaderimg}}'></image>
+    <view class='res_ncikname'>
+      <text>{{item.unickname}}</text>  
+      <text style='color:rgba(153,153,153,1);float:right;'>2018-12-31 12:12:13</text>
+    </view>
+    <view class='score'>评分： <image src='/images/star{{item.cstar}}.png'></image> </view>
+    <view class='res_content'>{{item.ccomment}}</view>
+    <view class='citys_box'>
+      <view class='fly'>
+        <image src='/images/fly.png'></image>
+      </view>
+      <view class='city_to'>{{item.bstart}}-{{item.bends}}</view>
+      <view class='res_time'>{{item.bdateline}} </view>
+    </view>
+  </view>
+</view>

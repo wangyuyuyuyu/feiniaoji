@@ -1,0 +1,23 @@
+<!--pages/order/order_evaluate/order_evaluate.wxml-->
+<view class='score_box'>
+  <view class='score_title'>{{infos.username}}
+    <text>对订单的评价:</text>
+  </view>
+  <image src="/images/star0.png" wx:if='{{!is_evaluate}}'></image>
+  <image src="/images/star{{ucomment.cstar}}.png" wx:if='{{is_evaluate}}'></image>
+  <view class="score_des_off" wx:if='{{!is_evaluate}}'>暂无评价</view>
+  <view class="score_des" wx:if='{{is_evaluate}}'>{{ucomment.ccomment}}</view>
+</view>
+<view class='my_evaluate'>
+  <view>对订单评分</view>
+  <image src='{{starImg}}'></image>
+  <view style='margin-top:70rpx;'>对订单评价</view>
+  <input placeholder='请输入您的评价' placeholder-class='input_p' bindinput='get_ping'></input>
+  <!-- 评分按钮 -->
+  <view class='btn0 btn' bindtap='btn' data-num='0'></view>
+  <view class='btn1 btn' bindtap='btn' data-num='1'></view>
+  <view class='btn2 btn' bindtap='btn' data-num='2'></view>
+  <view class='btn3 btn' bindtap='btn' data-num='3'></view>
+  <view class='btn4 btn' bindtap='btn' data-num='4'></view>
+</view>
+<button bindtap='sub'>确定</button>

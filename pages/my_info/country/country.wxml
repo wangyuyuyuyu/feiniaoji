@@ -1,0 +1,6 @@
+<!--pages/my_info/country/country.wxml-->
+<view class='infos'>
+  <view>输入你的常驻国家:</view>
+  <input bindinput='getinput' placeholder='如：俄罗斯' value='{{placeho}}' placeholder-class='input_p'></input>
+</view>
+<button bindtap='change'>保  存</button>

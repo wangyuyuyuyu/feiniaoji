@@ -1,0 +1,8 @@
+<!--pages/my_info/phone/phone.wxml-->
+<view class='infos'>
+  <view>输入你的手机号码:</view>
+  <input placeholder='输入区号' placeholder-class='input_p' bindinput='get_qu' value='{{qu}}' type='number'></input>
+  <text>-</text>
+  <input placeholder='输入电话' placeholder-class='input_p' bindinput='get_num' style='margin-left:110rpx;width:362rpx;' type='number' value='{{num}}'></input>
+</view>
+<button bindtap='change'>保  存</button>

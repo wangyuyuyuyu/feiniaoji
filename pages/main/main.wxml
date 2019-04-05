@@ -1,0 +1,6 @@
+<!--pages/info/info.wxml-->
+<view wx:for='{{friends}}' wx:key='{{index}}' data-username="{{item.uwxaccount}}" class='friends' bindtap="into_room">
+  <image src='{{item.uheaderimg}}'></image>
+  {{item.uwxaccount}}({{item.uusername}})
+  <image src='/images/shanchu.png' style='float:right;margin-top:20rpx;' catchtap='shanchu' data-openid="{{item.uopenid}}"></image>
+</view>

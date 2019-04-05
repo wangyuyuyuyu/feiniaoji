@@ -1,0 +1,157 @@
+.gradient{
+  width: 690rpx;
+  height: 910rpx;
+  background: white;
+  /* margin: 60rpx 0 0 30rpx; */
+  border-radius: 20rpx; 
+  position: fixed;
+  top: 80rpx;
+  z-index: 200;
+  padding: 0;
+  text-align: center;
+}
+.chooseDate{
+  height: 48rpx;
+  padding-top: 30rpx; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chooseDate image{
+  width: 48rpx;
+  height: 10rpx;
+}
+.my_date{
+  margin: 0 30rpx 0 30rpx;
+  color: rgba(153,153,153,1);
+  font-size: 34rpx;
+  line-height: 48rpx;
+}
+.my_wids{
+  font-size: 34rpx;
+  width: 45%;
+  text-align: center;
+}
+
+.spaceAroundCenter {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.box {
+  margin: 26rpx;
+}
+ 
+.flex-item {
+  width: 14.2%;
+  padding: 10rpx 0;
+}
+.item-content-current-day .item-content{
+  width: 100%;
+}
+.item-content {
+  /* padding: 20.5rpx 0; */
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 68rpx;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #fff;
+}
+.item-content1{
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 68rpx;
+   /* padding: 25rpx 0; */
+  text-align: center;
+  color: rgba(217,216,216,1);
+}
+ /* 当前日期 */
+.bk-color-day {
+  border-radius: 50%;
+  border: 1px solid rgba(217,216,216,1);
+  
+}
+.bk-color-day1{
+  color: #fff;
+  border-radius: 50%;
+  background-color: rgba(41,135,246,1);
+}
+
+/* 当前选中日期 */
+.bk-color-dayClick {
+  color: #fff;
+  border-radius: 50%;
+  background-color: rgba(41,135,246,1);
+}
+ 
+.item-content-current-day {
+  flex-grow: 2;
+}
+
+
+.cycle{
+  margin: 10rpx 0 20rpx;
+}
+
+.place{
+  height: 128rpx;
+  width: 630rpx;
+  border-bottom: 2rpx solid rgba(238,238,238,1);
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  box-sizing: border-box;
+}
+.place view{
+  width: 270rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  font-size: 34rpx;
+  font-weight: 600;
+  color:#d2d2d2;
+}
+.place image{
+  width: 48rpx;
+  height: 48rpx;
+  margin:0 30rpx;
+}
+
+.my_date1{
+  font-weight: bold;
+  color: rgba(41,135,246,1);
+}
+
+.black{
+  background: black;
+  opacity: 0.5;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 199;
+}
+.sure_btn{
+  background: rgba(41,135,246,1);
+  width: 690rpx;
+  height: 96rpx;
+  color: white;
+  font-size: 36rpx;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  border-radius: 0 0 18rpx 18rpx;
+}
+
+/* 返回不选择 */
+.sure_errs{
+  width: 100rpx !important;
+  height: 100rpx !important;
+  display: inline-block;
+  border-radius: 50%;
+  margin-top: 55rpx;
+}

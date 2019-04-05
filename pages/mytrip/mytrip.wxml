@@ -1,0 +1,76 @@
+<!--pages/mytrip/mytrip.wxml-->
+<view class='nav'>
+  <view class="{{index==0?'nav_item1':'nav_item'}}" bindtap='choose' data-index='0'>待出发</view>
+  <view class="{{index==1?'nav_item1':'nav_item'}}" bindtap='choose' data-index='1'>进行中</view>
+  <view class="{{index==2?'nav_item1':'nav_item'}}" bindtap='choose' data-index='2'>已完成</view>
+  <view class="{{index==3?'nav_item1':'nav_item'}}" bindtap='choose' data-index='3'>已取消</view>
+</view>
+
+<!-- 行程列表 -->
+<!-- 待出发 -->
+<!-- <view class='list_box' wx:if="{{index==0}}"> -->
+<view class='list_box' wx:for='{{trip_list}}' wx:for-index='k' wx:key='{{k}}' wx:if='{{index==item.bstate}}'>
+  <!-- 行程单位 -->
+  <view class='list'>
+    <!-- 行程编号 -->
+    <view class='list_head'>
+      <text style='display:block'>行程编号：{{item.btripnumbers}}</text>
+      <text class='wait' wx:if='{{index==0}}'>待出发</text>
+      <text class='wait' wx:if='{{index==1}}'>进行中</text>
+      <text class='wait' wx:if='{{index==2}}'>已完成</text>
+      <text class='wait' wx:if='{{index==3}}'>已取消</text>
+      <text>剩余重量：</text>
+      <text style='font-weight:bold;'>{{item.left_weight}}/{{item.btotalweight}}</text>
+      <text style='margin-left:150rpx;'>当前收益：</text>
+      <text style='color:red;'>￥{{item.btotalearn}}</text>
+    </view>
+
+    <view class='cityTo'>
+      <!-- 城市始发地 -->
+      <view class='city_box'>
+        <view class='city_item'>
+          <text class='citys'>{{item.bstart}}</text>
+          <view class='citys_country'>{{item.bstartpoint}}</view>
+          <text>{{item.bstarttime}}</text>
+        </view>
+        <image src='/images/jiantou.png' class='jiantou'></image>
+        <view class='city_item' style='margin-left:315rpx;'>
+          <text class='citys'>{{item.bends}}</text>
+          <view class='citys_country'>{{item.bendpoint}}</view>
+          <text>{{item.bendtime}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 查看详情 -->
+    <button class='see' bindtap='go_trip_details' data-id='{{item.bid}}'>查看详情</button>
+  </view>
+  <!-- 关联订单 -->
+  <view class='relation'>
+    <view class='icon'></view>
+    <view class='order_title'>关联订单</view>
+    <!-- 关联订单单位 -->
+    <view class='order_item' wx:for='{{orders}}' wx:for-item='ord' wx:for-index='ord_k' wx:key='ord_k' wx:if='{{ord.obirdsid==item.bid}}' bindtap='go_orders' data-id='{{ord.oid}}'>
+      <image src='{{ord.uheaderimg}}' class='headImg'></image>
+      <view class='danhao'>单号: {{ord.oordernumber}}</view>
+      <view class='danhao'>金额：￥{{ord.omoney}}</view>
+      <view class='wait_sure' wx:if='{{ord.ostate==0}}'>待确认
+        <image src='/images/right_go.png'></image>
+      </view>
+      <view class='wait_sure' wx:if='{{ord.ostate==1}}'>待支付
+        <image src='/images/right_go.png'></image>
+      </view>
+      <view class='wait_sure' wx:if='{{ord.ostate==2}}'>待发货
+        <image src='/images/right_go.png'></image>
+      </view>
+      <view class='wait_sure' wx:if='{{ord.ostate==3}}'>待收货
+        <image src='/images/right_go.png'></image>
+      </view>
+      <view class='wait_sure' wx:if='{{ord.ostate==4}}'>待评论
+        <image src='/images/right_go.png'></image>
+      </view>
+      <view class='wait_sure' wx:if='{{ord.ostate==5}}'>已完成
+        <image src='/images/right_go.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
